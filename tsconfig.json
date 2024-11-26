@@ -13,9 +13,13 @@
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
+    "esModuleInterop": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@/*": ["src/*"]
+  }
   }
 }
