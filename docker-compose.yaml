@@ -16,19 +16,23 @@ services:
     depends_on:
       - mysql
       - redis
+    env_file:
+      - ./prisma/.env
 
   mysql:
     container_name: mysql
     image: mysql:8
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - '3306:3306'
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=wanlum
+      - MYSQL_ROOT_PASSWORD=Y349^&84dk4Hwe
       - MYSQL_DATABASE=cosette-database
     networks:
       - cosette-net
     volumes:
-      - mysql:/var/lib/mysql
+      - ./prisma/data:/var/lib/mysql
 
   redis:
     container_name: redis

@@ -17,8 +17,20 @@ RUN npm install pm2 -g
 # Step 6: Install project dependencies
 RUN npm install --only=production
 
+# generated prisma files
+COPY prisma ./prisma/
+
+# COPY ENV variable
+COPY .env ./
+
+# COPY tsconfig.json file
+COPY tsconfig.json ./
+
 # Step 7: Copy the rest of the application code to the working directory
 COPY . .
+
+# generate prisma
+RUN npx prisma generate
 
 # Step 8: Build the NestJS application
 RUN npm run build
