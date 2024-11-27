@@ -17,7 +17,7 @@ services:
       - mysql
       - redis
     env_file:
-      - ./prisma/.env
+      - ./.env
 
   mysql:
     container_name: mysql
