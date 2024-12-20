@@ -8,7 +8,7 @@ RUN rm /etc/nginx/conf.d/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/
 
 # Expose the listening port
-EXPOSE 80
+EXPOSE 5000
 
 # Launch NGINX
 CMD [ "nginx", "-g", "daemon off;" ]
