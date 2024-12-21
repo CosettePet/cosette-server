@@ -12,16 +12,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model Employee {
+  employee_id       BigInt   @id @default(autoincrement()) @map("employee_id") // Primary key, auto-incremented
+  login_name        String   @map("login_name") // Login account name (unique)
+  login_pwd         String   @map("login_pwd")  // Login password
+  actual_name       String   @map("actual_name") // Employee's actual name
+  avatar            String?  @map("avatar") // Optional avatar URL
+  gender            Boolean  @default(false) @map("gender") // Gender: 0 for male, 1 for female
+  phone             String?  @map("phone") // Optional phone number
+  department_id     Int      @map("department_id") // Department ID
+  position_id       BigInt?  @map("position_id") // Optional position ID
+  email             String?  @map("email") // Optional email address
+  disabled_flag     Boolean  @map("disabled_flag") // Whether the employee is disabled (0 = No, 1 = Yes)
+  deleted_flag      Boolean  @map("deleted_flag")  // Whether the employee is deleted (0 = No, 1 = Yes)
+  administrator_flag Boolean @default(false) @map("administrator_flag") // Whether the employee is an admin (0 = No, 1 = Yes)
+  remark            String?  @map("remark") // Optional remark field
+  update_time       DateTime @default(now()) @updatedAt @map("update_time") // Timestamp for last update
+  create_time       DateTime @default(now()) @map("create_time") // Timestamp for record creation
+  deleted_time      DateTime? @map("deleted_time") // Optional timestamp for when the employee was deleted
 
-model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
-  phone String @unique
-}
-
-model Acount {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
+  @@map("c_employee") // Map model to the t_employee table in the database
 }
